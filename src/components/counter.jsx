@@ -24,6 +24,7 @@ class Counter extends Component {
   //     this.setState({ count: this.state.count + 1 });
   //   };
   render() {
+    const { value } = this.props.counter;
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
@@ -34,10 +35,17 @@ class Counter extends Component {
           // if we want to pass an event argument then we have to use an arrow function as follows
           //   oncClick={() => this.handleIncrement(product)}
         >
-          Increment
+          +
         </button>
         <button
-          className="btn btn-danger btn-sm m-2"
+          className="btn btn-secondary btn-sm m-2"
+          onClick={() => this.props.onDecrement(this.props.counter)}
+          disabled={this.props.counter.value === 0 ? "disabled" : ""}
+        >
+          -
+        </button>
+        <button
+          className="btn btn-danger btn-sm "
           onClick={() => this.props.onDelete(this.props.counter.id)}
         >
           Delete
